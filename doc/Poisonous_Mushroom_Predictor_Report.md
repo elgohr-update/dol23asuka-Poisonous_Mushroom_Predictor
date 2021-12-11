@@ -1,19 +1,3 @@
-Predicting poisonous mushroom from morphologocal characteristics
-================
-Group 4 - Dongxiao Li, Kyle Maj, Mahmoodur Rahman
-2020/11/26 (updated: 2021-12-04)
-
--   [Summary](#summary)
--   [Introduction](#introduction)
--   [Methods](#methods)
-    -   [Data](#data)
-    -   [Analysis](#analysis)
-        -   [Exploration](#exploration)
-        -   [Prediction](#prediction)
--   [Limitations & Assumptions](#limitations--assumptions)
--   [Looking Forward](#looking-forward)
--   [References](#references)
-
 # Summary
 
 As mushrooms have distinctive characteristics which help in identifying
@@ -104,7 +88,11 @@ the classification target. We also examined the distribution of toxic
 and non-toxic mushroom across the categorical features in the training
 data set.
 
-<img src="../results/eda_plot.png" title="Figure 1.Distribution of Target feature (Target = 1: Toxic, and Target = 0: Edible) in the training set" alt="Figure 1.Distribution of Target feature (Target = 1: Toxic, and Target = 0: Edible) in the training set" width="100%" style="display: block; margin: auto;" />
+<img src="../results/eda_plot.png" alt="Figure 1.Distribution of Target feature (Target = 1: Toxic, and Target = 0: Edible) in the training set" width="100%" />
+<p class="caption">
+Figure 1.Distribution of Target feature (Target = 1: Toxic, and Target =
+0: Edible) in the training set
+</p>
 
 From exploratory data analysis we can see that edible mushrooms are
 likely to have have sunken(denoted as s) cap-shape, green(r) or
@@ -120,7 +108,10 @@ will have to drop this feature when doing the model fitting. Also, there
 are missing values in stalk root that we need to deal with using column
 transformer to impute proper values in.
 
-<img src="../results/img/cap_shape.png" title="Figure 2.Different mushroom cap shape" alt="Figure 2.Different mushroom cap shape" width="50%" style="display: block; margin: auto;" />
+<img src="../results/img/cap_shape.png" alt="Figure 2.Different mushroom cap shape" width="50%" />
+<p class="caption">
+Figure 2.Different mushroom cap shape
+</p>
 
 ### Prediction
 
@@ -147,29 +138,29 @@ LogisticRegression
 <tbody>
 <tr>
 <td style="text-align:left;">
-fit_time
+fit\_time
 </td>
 <td style="text-align:left;">
-0.025 (+/- 0.002)
+0.026 (+/- 0.002)
 </td>
 <td style="text-align:left;">
-0.070 (+/- 0.003)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-score_time
-</td>
-<td style="text-align:left;">
-0.017 (+/- 0.001)
-</td>
-<td style="text-align:left;">
-0.018 (+/- 0.000)
+0.067 (+/- 0.002)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-test_accuracy
+score\_time
+</td>
+<td style="text-align:left;">
+0.018 (+/- 0.001)
+</td>
+<td style="text-align:left;">
+0.018 (+/- 0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+test\_accuracy
 </td>
 <td style="text-align:left;">
 0.515 (+/- 0.000)
@@ -180,7 +171,7 @@ test_accuracy
 </tr>
 <tr>
 <td style="text-align:left;">
-test_precision
+test\_precision
 </td>
 <td style="text-align:left;">
 0.000 (+/- 0.000)
@@ -191,7 +182,7 @@ test_precision
 </tr>
 <tr>
 <td style="text-align:left;">
-test_recall
+test\_recall
 </td>
 <td style="text-align:left;">
 0.000 (+/- 0.000)
@@ -202,7 +193,7 @@ test_recall
 </tr>
 <tr>
 <td style="text-align:left;">
-test_f1
+test\_f1
 </td>
 <td style="text-align:left;">
 0.000 (+/- 0.000)
@@ -213,7 +204,7 @@ test_f1
 </tr>
 <tr>
 <td style="text-align:left;">
-test_roc_auc
+test\_roc\_auc
 </td>
 <td style="text-align:left;">
 0.500 (+/- 0.000)
@@ -224,7 +215,7 @@ test_roc_auc
 </tr>
 <tr>
 <td style="text-align:left;">
-test_average_precision
+test\_average\_precision
 </td>
 <td style="text-align:left;">
 0.485 (+/- 0.000)
@@ -239,7 +230,7 @@ test_average_precision
 We decided to use LogisticRregression classifier from the scikit-learn
 pacakge (Pedregosa et al. 2011). To better understand the performance of
 our selected models, we use the scoring metrics of accuracy, precision,
-recall, f1, roc_auc and average precision when doing cross validation.
+recall, f1, roc\_auc and average precision when doing cross validation.
 The cross-validation scores for each model are summarized in the
 `Table 1`.
 
@@ -298,12 +289,12 @@ values and the horizontal side states the predicted values. We can see
 that the TN(True Negative) is 3345 such that for mushrooms that are
 edible, our Logistic Regression Classifier identified all of them
 correctly as ‘edible’ since ‘edible’ is the negative class in our model.
-FP(False Positive) here is 0, indicating that all edible mushrooms are
-being correctly identified. TP(True Positive) is 3152, for 3154
-poisonous mushrooms in our train data set, 3152 of them are correctly
-identified as ‘poisonous’ while FN(False Negative) is 2 indicating that
-2 observations were identified as ‘edible’ even though they are actually
-poisonous.
+FP(False Positive, or type I error) here is 0, indicating that all
+edible mushrooms are being correctly identified. TP(True Positive) is
+3152, for 3154 poisonous mushrooms in our train data set, 3152 of them
+are correctly identified as ‘poisonous’ while FN(False Negative, or type
+II error) is 2 indicating that 2 observations were identified as
+‘edible’ even though they are actually poisonous.
 
 We can see how the 0.99 recall score in the Table 1 is calculated given
 the below formula for `recall` :
@@ -344,7 +335,7 @@ Poisonous(Toxic)
 <tbody>
 <tr>
 <td style="text-align:left;">
-poisonous
+edible
 </td>
 <td style="text-align:right;">
 863
@@ -355,7 +346,7 @@ poisonous
 </tr>
 <tr>
 <td style="text-align:left;">
-edible
+poisonous
 </td>
 <td style="text-align:right;">
 1
@@ -373,15 +364,26 @@ With a recall score of 0.99 while the remaining scoring metrics are 1,
 our LogicsticRegression classifier is performing quite well in
 predicting whether a mushroom is poisonous or edible. Given the
 unexpected performance and high accuracy of our model, we decided to do
-sanity checks from expert’s advice. First, we checked if there is the
-class imbalance issue in our dataset. It turns out that we have no class
-imbalance as the train data set contains 3334 edible mushrooms and 3154
-poisonous mushrooms which are quite equally distributed. Also in the
-test data set, there are 863 edible mushrooms and 762 poisonous
-mushrooms which is not a significant imbalance. Additionally, we checked
-if our data set is too small, resulting in unrealistic accuracy scores.
-Given this suggestion, the train data set contains 6499 observations
-which is sufficient for model training and fitting.
+sanity checks from expert’s advice. First, we examined out data set for
+target class imbalance. The train data set contains 3334 edible
+mushrooms and 3154 poisonous mushrooms which are quite equally
+distributed. Also in the test data set, there are 863 edible mushrooms
+and 762 poisonous mushrooms. This confirmed that existing target class
+imbalance is nowhere near large enough to cause significant distortion
+in our results. Additionally, we checked if our data set is too small,
+resulting in unrealistic accuracy scores. Given this suggestion, the
+train data set contains 6499 observations which is sufficient for model
+training and fitting.
+
+An additional concern that we would like to examine in future
+refinements is the possibility of overfitting due to feature class
+imbalance. Unlike the target class, there are a large number of features
+in the data set with significant class imbalance. As we expand on this
+project we intend to perform a more comprehensive analysis of feature
+importance and selection in order to address this issue. That being
+said, we do not believe there is clear evidence of overfitting in the
+current model as train and test scores are both high, but do not have a
+significant gap between them.
 
 In conclusion, we believe the results of our model to be reliable. But
 there are still some potential improvements we can made which will be
@@ -405,49 +407,25 @@ sampling in the field.
 
 # References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-
-<div id="ref-rmarkdown" class="csl-entry">
-
 Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin
 Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and
 Richard Iannone. 2020. *Rmarkdown: Dynamic Documents for r*.
 <https://github.com/rstudio/rmarkdown>.
 
-</div>
-
-<div id="ref-bccdc_mush" class="csl-entry">
-
 BC Centre for Disease Control. 2019 \[Online\]. “Mushroom Poisonings on
 the Rise in British Columbia.”
 <http://www.bccdc.ca/about/news-stories/stories/mushroom-poisonings-on-the-rise-in-british-columbia>.
-
-</div>
-
-<div id="ref-chaoqun" class="csl-entry">
 
 Chaoqun, Zheng. 2019. “Recognition and Research of Poisonous Mushroom
 Based on Machine Learning.” *Taigu: Shanxi Agricultural University,
 Jinzhong, China*.
 
-</div>
-
-<div id="ref-docopt" class="csl-entry">
-
 de Jonge, Edwin. 2020. *Docopt: Command-Line Interface Specification
 Language*. <https://CRAN.R-project.org/package=docopt>.
-
-</div>
-
-<div id="ref-diaz2005evolving" class="csl-entry">
 
 Diaz, James H. 2005. “Evolving Global Epidemiology, Syndromic
 Classification, General Management, and Prevention of Unknown Mushroom
 Poisonings.” *Critical Care Medicine* 33 (2): 419–26.
-
-</div>
-
-<div id="ref-fukuwatari2001establishment" class="csl-entry">
 
 Fukuwatari, Tsutomu, Etsuro Sugimoto, Kazumasa Yokoyama, and Katsumi
 Shibata. 2001. “Establishment of Animal Model for Elucidating the
@@ -455,117 +433,57 @@ Mechanism of Intoxication by the Poisonous Mushroom Clitocybe
 Acromelalga.” *Shokuhin Eiseigaku Zasshi. Journal of the Food Hygienic
 Society of Japan* 42 (3): 185–89.
 
-</div>
-
-<div id="ref-lei2016mushroom" class="csl-entry">
-
 Lei, Chen, W Tangkanakul, L Lu, XQ Liu, C Jiraphongsa, and S Jetanasen.
 2016. “Mushroom Poisoning Surveillance Analysis, Yunnan Province, China,
 2001-2006.” *OSIR Journal* 1 (1): 8–11.
 
-</div>
-
-<div id="ref-min2006present" class="csl-entry">
-
 Min, LU, LI Yu, et al. 2006. “Present Status and Future Prospects of the
 Mushroom Industry in China.” *Acta Edulis Fungi* 13 (01): 9.
-
-</div>
-
-<div id="ref-pedregosa2011scikit" class="csl-entry">
 
 Pedregosa, Fabian, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel,
 Bertrand Thirion, Olivier Grisel, Mathieu Blondel, et al. 2011.
 “Scikit-Learn: Machine Learning in Python.” *Journal of Machine Learning
 Research* 12 (Oct): 2825–30.
 
-</div>
-
-<div id="ref-r_cite" class="csl-entry">
-
 R Core Team. 2021. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 <https://www.R-project.org/>.
-
-</div>
-
-<div id="ref-reynolds1965mushrooms" class="csl-entry">
 
 Reynolds, WA, and FH Lowe. 1965. “Mushrooms and a Toxic Reaction to
 Alcohol: Report of Four Cases.” *New England Journal of Medicine* 272
 (12): 630–31.
 
-</div>
-
-<div id="ref-Shuaichang" class="csl-entry">
-
 Shuaichang, F, Y Xiaomei, and L Jian. 2020. “Toadstool Image Recognition
 Based on Deep Residual Network and Transfer Learning.” *Journal of
 Transduction Technology* 33: 74–83.
 
-</div>
-
-<div id="ref-tanaka1996histopathological" class="csl-entry">
-
 Tanaka, K, S Miyasaka, and T Inoue. 1996. “Histopathological Effects of
 Illudin s, a Toxic Substance of Poisonous Mushroom, in Rat.” *Human &
 Experimental Toxicology* 15 (4): 289–93.
-
-</div>
-
-<div id="ref-TEGZES2002397" class="csl-entry">
 
 Tegzes, John H, and Birgit Puschner. 2002. “Toxic Mushrooms.”
 *Veterinary Clinics of North America: Small Animal Practice* 32 (2):
 397–407.
 https://doi.org/<https://doi.org/10.1016/S0195-5616(01)00012-2>.
 
-</div>
-
-<div id="ref-van1995python" class="csl-entry">
-
 Van Rossum, Guido, and Fred L Drake Jr. 1995. *Python Reference Manual*.
 Centrum voor Wiskunde en Informatica Amsterdam.
-
-</div>
-
-<div id="ref-white2019mushroom" class="csl-entry">
 
 White, Julian, Scott A Weinstein, Luc De Haro, Regis Bédry, Andreas
 Schaper, Barry H Rumack, and Thomas Zilker. 2019. “Mushroom Poisoning: A
 Proposed New Clinical Classification.” *Toxicon* 157: 53–65.
 
-</div>
-
-<div id="ref-hadley_gg" class="csl-entry">
-
 Wickham, Hadley. 2016. *Ggplot2: Elegant Graphics for Data Analysis*.
 Springer-Verlag New York. <https://ggplot2.tidyverse.org>.
-
-</div>
-
-<div id="ref-hadley" class="csl-entry">
 
 Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy
 D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019.
 “Welcome to the <span class="nocase">tidyverse</span>.” *Journal of Open
 Source Software* 4 (43): 1686. <https://doi.org/10.21105/joss.01686>.
 
-</div>
-
-<div id="ref-knitr" class="csl-entry">
-
 Xie, Yihui. 2020. *Knitr: A General-Purpose Package for Dynamic Report
 Generation in r*. <https://yihui.org/knitr/>.
-
-</div>
-
-<div id="ref-zhifeng" class="csl-entry">
 
 Zhifeng, Yang. 2019. “Application of Multi-Classifier Fusion Based on
 Stacking Algorithm in Identification of Poisonous Mushrooms.” *Taigu:
 Shanxi Agricultural University, Jinzhong, China*.
-
-</div>
-
-</div>
